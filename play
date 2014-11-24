@@ -1,0 +1,11 @@
+#!/bin/bash
+SCRIPT="$1.js"
+if [[ -z $1 ]]; then
+  echo "Usage: $0 1-1"
+  exit 0
+fi
+if [[ -f $SCRIPT ]]; then
+  watchy -w $SCRIPT -- node $SCRIPT
+else
+  echo "No such script $SCRIPT"
+fi
