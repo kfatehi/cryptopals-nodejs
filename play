@@ -1,11 +1,19 @@
 #!/bin/bash
-SCRIPT="$1.js"
-if [[ -z $1 ]]; then
-  echo "Usage: $0 1-1"
+SCRIPT="$1-$2.js"
+if [[ -z $1 || -z $2 ]]; then
+  echo "Usage: $0 SET# CHALLENGE#"
   exit 0
 fi
 if [[ -f $SCRIPT ]]; then
-  watchy -w $SCRIPT -- node $SCRIPT
+  node $SCRIPT
+  if [[ "$?" == "0" ]]; then
+    echo "$SCRIPT looks good! Continue your path to crypto enlightenment by solving the next puzzle."
+  else
+    echo "$SCRIPT is failing. Continue your path to crypto enlightenment by solving the puzzle."
+    echo "-> http://cryptopals.com/sets/$1/challenges/$2/"
+    watchy -w $SCRIPT -- node $SCRIPT
+  fi
 else
-  echo "No such script $SCRIPT"
+  touch $SCRIPT && echo "process.exit(-1)" > $SCRIPT
+  $0 $1 $2
 fi
