@@ -12,7 +12,7 @@ if [[ -f $SCRIPT ]]; then
   if [[ "$?" == "0" ]]; then
     echo $SUCCESSMSG
   else
-    watchy -w $SCRIPT -- node $SCRIPT
+    watchy -w . -- node $SCRIPT
   fi
 else
   touch $SCRIPT && echo "require('assert').equal(true, false, '$FAILMSG')" > $SCRIPT
