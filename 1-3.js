@@ -15,15 +15,20 @@ function makeKey(charCode, length) {
   return new Buffer(key)
 }
 
-var alphabet = 'abcdefghijklmnopqrstuvwxyz'
-for (var i=0; i<alphabet.length; i++) {
-  var letter = alphabet[i]
-  var key = makeKey(letter.charCodeAt(), buf.length)
+var topScore = 0;
+var plainText = 'idk';
+
+for (var i=0; i<255; i++) {
+  var key = makeKey(i, buf.length)
   // now we have a key to try
   // we should try it and then get the score for the result
   // if the result scores high, it's probably english
   var out = xor(buf, key).toString()
   var score = stringScore(out);
-  if (score === 415)
-    console.log(out); // found you!
+  if (score > topScore) {
+    topScore = score
+    plainText = out;
+  }
 }
+
+console.log(topScore, plainText);
