@@ -1,5 +1,8 @@
 #!/bin/bash
 SCRIPT="$1-$2.js"
+URL="http://cryptopals.com/sets/$1/challenges/$2/"
+SUCCESSMSG="$SCRIPT looks good! Continue your path to crypto enlightenment by solving the next puzzle."
+FAILMSG="Continue your path to crypto enlightenment by editing $SCRIPT. View the problem here:\n$URL\n"
 if [[ -z $1 || -z $2 ]]; then
   echo "Usage: $0 SET# CHALLENGE#"
   exit 0
@@ -7,13 +10,11 @@ fi
 if [[ -f $SCRIPT ]]; then
   node $SCRIPT
   if [[ "$?" == "0" ]]; then
-    echo "$SCRIPT looks good! Continue your path to crypto enlightenment by solving the next puzzle."
+    echo $SUCCESSMSG
   else
-    echo "$SCRIPT is failing. Continue your path to crypto enlightenment by solving the puzzle."
-    echo "-> http://cryptopals.com/sets/$1/challenges/$2/"
     watchy -w $SCRIPT -- node $SCRIPT
   fi
 else
-  touch $SCRIPT && echo "process.exit(-1)" > $SCRIPT
+  touch $SCRIPT && echo "require('assert').equal(true, false, '$FAILMSG')" > $SCRIPT
   $0 $1 $2
 fi
