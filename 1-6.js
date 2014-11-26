@@ -50,8 +50,12 @@ for (var blockIndex=0; blockIndex<numBlocks; blockIndex++) {
   transposed.push(transposingBuffer)
 }
 
-console.log(transposed);
-
-  
+// now we'll solve each as though it was single-character xor
+var singleCharacterXOR = require('./lib/single_character_xor');
+for (var i=0; i<transposed.length; i++) {
+  var block = transposed[i]
+  var result = singleCharacterXOR(block)
+  console.log(i, result.histogram)
+}
 
 process.exit(1)
