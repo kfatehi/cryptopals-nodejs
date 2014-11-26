@@ -8,12 +8,13 @@ if [[ -z $1 || -z $2 ]]; then
   exit 0
 fi
 if [[ -f $SCRIPT ]]; then
-  node $SCRIPT
-  if [[ "$?" == "0" ]]; then
-    echo $SUCCESSMSG
-  else
-    watchy -w . -- node $SCRIPT
-  fi
+  node $SCRIPT && {
+    if [[ "$?" == "0" ]]; then
+      echo $SUCCESSMSG
+    else
+      watchy -w . -- node $SCRIPT
+    fi
+  }
 else
   touch $SCRIPT && echo "require('assert').equal(true, false, '$FAILMSG')" > $SCRIPT
   $0 $1 $2
