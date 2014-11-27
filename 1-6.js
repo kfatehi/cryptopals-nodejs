@@ -25,6 +25,9 @@ for (var i=0; i<keySizes.length; i++) {
 
 console.log(smallestDistance, probablyKeySize);
 
+console.log('using keysize:', probablyKeySize);
+
+// FIXME wrong, this keysize is probably not correct
 // now we know the keysize, or we think we do anyway...
 // let's chunk the file into blocks of KEYSIZE
 var numBlocks = Math.floor(fileContent.length/probablyKeySize)
@@ -35,27 +38,18 @@ for (var i=0; i<numBlocks; i++) {
   blocks[i] = fileContent.slice(start, end)
 }
 
+// FIXME wrong, you should only have KEYSIZE number of blocks
 // now let's transpose the blocks, meaning:
-// make a block that is the first byte of every block, and a block that is the second byte of every block, and so on.
-var transposed = []
-for (var blockIndex=0; blockIndex<numBlocks; blockIndex++) {
-  var transposingBuffer = new Buffer(numBlocks) // fill with every i'th byte of each block
-  var currentBlock = blocks[blockIndex]
+var transposed = require('./lib/transpose')(blocks, probablyKeySize, numBlocks)
+console.log('transposed block count:', transposed.length);
 
-  // fill the transposing buffer
-  for (var j=0; j<currentBlock.length; j++) {
-    transposingBuffer[j] = currentBlock[blockIndex]
-  }
-
-  transposed.push(transposingBuffer)
-}
+console.log('tranposed first block length:', transposed[0].length);
 
 // now we'll solve each as though it was single-character xor
 var singleCharacterXOR = require('./lib/single_character_xor');
 for (var i=0; i<transposed.length; i++) {
   var block = transposed[i]
   var result = singleCharacterXOR(block)
-  console.log(i, result.histogram)
 }
 
-process.exit(1)
+process.exit(-1)
