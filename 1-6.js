@@ -4,28 +4,11 @@ require('assert').equal(hammingTest, 37)
 
 var fs = require('fs')
 var fileContent = fs.readFileSync(__dirname+'/data/4.txt')
-var makeRange = require('./lib/range')
-var keySizes = makeRange(2, 60)
-var smallestDistance = 999;
-var probablyKeySize = null;
-for (var i=0; i<keySizes.length; i++) {
-  var keySize = keySizes[i];
-  var chunkOne = new Buffer(keySize);
-  var chunkTwo = new Buffer(keySize);
-  for (var j=0; j<keySize; j++) {
-    chunkOne[j] = fileContent[j]
-    chunkTwo[j] = fileContent[j+keySize]
-  }
-  var editDistance = getHammingDistance(chunkOne.toString(), chunkTwo.toString()) / keySize;
-  if (editDistance < smallestDistance) {
-    smallestDistance = editDistance;
-    probablyKeySize = keySize;
-  }
-}
 
-console.log(smallestDistance, probablyKeySize);
+var keySizes = require('./lib/find_best_keysizes')(fileContent, 2, 60);
 
-console.log('using keysize:', probablyKeySize);
+console.log('using keysizes:', keySizes);
+process.exit(-1)
 
 // FIXME wrong, this keysize is probably not correct
 // now we know the keysize, or we think we do anyway...
@@ -50,6 +33,7 @@ var singleCharacterXOR = require('./lib/single_character_xor');
 for (var i=0; i<transposed.length; i++) {
   var block = transposed[i]
   var result = singleCharacterXOR(block)
+  console.log(result.plainText);
 }
 
-process.exit(-1)
+
