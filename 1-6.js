@@ -1,10 +1,4 @@
-var getHammingDistance = require('./lib/hamming_distance')
-hammingTest = getHammingDistance('this is a test', 'wokka wokka!!!')
-require('assert').equal(hammingTest, 37)
-
-var fs = require('fs')
-var fileContent = fs.readFileSync(__dirname+'/data/4.txt')
-
+var fileContent = require('fs').readFileSync(__dirname+'/data/4.txt')
 var keySizes = require('./lib/find_best_keysizes')(fileContent, 2, 60);
 
 console.log('using keysizes:', keySizes);
