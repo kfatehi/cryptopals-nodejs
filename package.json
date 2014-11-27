@@ -1,0 +1,25 @@
+{
+  "name": "cryptopals-js",
+  "version": "1.0.0",
+  "description": "cryptopals-nodejs ===",
+  "main": "1-1.js",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "lodash": "^2.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keyvanfatehi/cryptopals-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keyvanfatehi/cryptopals-nodejs/issues"
+  },
+  "homepage": "https://github.com/keyvanfatehi/cryptopals-nodejs"
+}
