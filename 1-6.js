@@ -33,3 +33,32 @@ var best = topScores[0]
 console.log(best.key.toString());
 
 process.exit(1)
+
+/*
+
+Produces the following output:
+
+keyvan@lucia.local:~/P/cryptopals-js git:master ❯❯❯ ./play 1 6
+Analyzing keysize: 7
+EEEEEEE
+Analyzing keysize: 39
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 22
+EEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 35
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 47
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 34
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 18
+EEEEEEEEEEEEEEEEEE
+Analyzing keysize: 49
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+Analyzing keysize: 14
+EEEEEEEEEEEEEE
+Analyzing keysize: 25
+EEEEEEEEEEEEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEEEEEEEEEEEE
+
+*/
