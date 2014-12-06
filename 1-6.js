@@ -22,10 +22,9 @@ for (var k=0; k<10; k++) {
   for (var i=0; i<transposed.length; i++) {
     var block = transposed[i]
     var result = singleCharacterXOR(block)
-    data.score += result.topScore;
-    console.log(String.fromCharCode(result.bestKey[i].toString(8)));
+    data.key[i] = result.bestKey[i];
   }
-  //console.log(data.key.toString());
+  console.log(data.key.toString());
   keyScores.push(data)
 }
 var topScores = _.sortBy(keyScores, 'score').reverse()
