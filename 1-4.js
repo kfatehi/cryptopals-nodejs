@@ -4,7 +4,7 @@ var file = fs.readFileSync(__dirname+'/data/4.txt')
 
 var strings = file.toString().split('\n')
 
-var topScore = 0;
+var topScore = 1000;
 var plainText = 'idk';
 
 for (var i=0; i<strings.length; i++) {
@@ -12,7 +12,7 @@ for (var i=0; i<strings.length; i++) {
   // make it a byte array
   var buf = new Buffer(str, 'hex')
   var result = singleCharacterXOR(buf);
-  if (result.topScore > topScore) {
+  if (result.topScore < topScore) {
     topScore = result.topScore
     plainText = result.plainText;
   }
