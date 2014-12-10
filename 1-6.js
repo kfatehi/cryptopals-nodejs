@@ -1,12 +1,10 @@
 var _ = require('lodash')
+var tools = require('./lib/filetools')
 var scorestring = require('./lib/string_score')
 var transpose = require('./lib/transpose')
-var fileContent = require('./lib/tools').bufferFromFileBase64(__dirname+'/data/6.txt')
-var singleCharacterXOR = require('./lib/single_character_xor');
-var jxor = require('./lib/xor_new');
+var fileContent = tools.bufferFromFileBase64(__dirname+'/data/6.txt')
+var jxor = require('./lib/xor').xor_singlebyte;
 var keySizes = require('./lib/find_best_keysizes')(fileContent, 2, 60);
-var bufferToArray = require('./lib/buffer_to_array');
-var tools = require('./lib/tools')
 var keyScores = []
 
 

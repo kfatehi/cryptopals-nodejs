@@ -1,5 +1,5 @@
 var fs = require('fs')
-var singleCharacterXOR = require('./lib/single_character_xor')
+var singleCharacterXOR = require('./lib/xor').xor_singlebyte
 var file = fs.readFileSync(__dirname+'/data/4.txt')
 
 var strings = file.toString().split('\n')
