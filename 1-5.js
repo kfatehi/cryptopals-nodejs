@@ -10,7 +10,5 @@ var expected = "0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a262263
 require('assert').equal(encrypted, expected)
 
 // now lets encrypt some files
-
-console.log('\n1-5.js', repeatingKeyXOR.encryptFile('./1-5.js'));
-
-console.log('\n1-4.js', repeatingKeyXOR.encryptFile('./1-4.js'));
+//console.log('\n1-5.js', repeatingKeyXOR.encryptFile('./1-5.js'));
+//console.log('\n1-4.js', repeatingKeyXOR.encryptFile('./1-4.js'));
