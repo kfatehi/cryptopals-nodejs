@@ -1,4 +1,4 @@
-var xor = require('./lib/xor')
+var xor = require('./lib/xor').xor
 
 var fixedXOR = function(str1, str2) {
   var buf1 = new Buffer(str1, 'hex')
