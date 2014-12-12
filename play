@@ -1,20 +1,25 @@
 #!/bin/bash
-SCRIPT="$1-$2.js"
-URL="http://cryptopals.com/sets/$1/challenges/$2/"
-SUCCESSMSG="$SCRIPT looks good! Continue your path to crypto enlightenment by solving the next puzzle."
-FAILMSG="Continue your path to crypto enlightenment by editing $SCRIPT. View the problem here:\n$URL\n"
-if [[ -z $1 || -z $2 ]]; then
-  echo "Usage: $0 SET# CHALLENGE#"
-  exit 0
-fi
-if [[ -f $SCRIPT ]]; then
+
+function playFile() {
+  SCRIPT="$1"
+  SUCCESSMSG="$SCRIPT looks good! Continue your path to crypto enlightenment by solving the next puzzle."
+  FAILMSG="Continue your path to crypto enlightenment by editing $SCRIPT.\n$URL\n"
   node $SCRIPT
   if [[ "$?" == "0" ]]; then
     echo $SUCCESSMSG
   else
     watchy -w . -- node $SCRIPT
   fi
+}
+
+#  touch $SCRIPT && echo "require('assert').equal(true, false, '$FAILMSG')" > $SCRIPT
+
+
+if [[ ! -z $1 ]]; then
+  playFile $1
 else
-  touch $SCRIPT && echo "require('assert').equal(true, false, '$FAILMSG')" > $SCRIPT
-  $0 $1 $2
+  SCRIPTS=$(ls -1A challenges | awk '{print "challenges/"$1}')
+  for script in $SCRIPTS; do
+    playFile $script
+  done
 fi
