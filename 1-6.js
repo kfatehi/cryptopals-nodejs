@@ -14,4 +14,4 @@ assert.equal(keySize, 29)
 var byteArray = BreakVignere(fileContent, keySize)
 var plain = new Buffer(byteArray).toString()
 console.log(plain);
-assert.equal(plain, 'stuff')
+assert.equal(plain, "Terminator X: Bring the noise")
