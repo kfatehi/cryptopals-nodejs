@@ -1,4 +1,4 @@
-var repeatingKeyXOR = require('./lib/repeating_key_xor')("ICE")
+var repeatingKeyXOR = require('../lib/repeating_key_xor')("ICE")
 
 var plainText = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
 

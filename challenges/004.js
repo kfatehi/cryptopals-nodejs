@@ -1,11 +1,11 @@
-var string_score = require('./lib/string_score')
-var singleByteXOR = require('./lib/xor').xor_singlebyte
-var crackSingleByteXORCipher = require('./lib/crack_single_byte_xor_cipher')
+var string_score = require('../lib/string_score')
+var singleByteXOR = require('../lib/xor').xor_singlebyte
+var crackSingleByteXORCipher = require('../lib/crack_single_byte_xor_cipher')
 var fs = require('fs')
-var file = fs.readFileSync(__dirname+'/data/4.txt')
+var file = fs.readFileSync(__dirname+'/../data/4.txt')
 var strings = file.toString().split('\n')
 
-var singleByteXOR = require('./lib/xor').xor_singlebyte
+var singleByteXOR = require('../lib/xor').xor_singlebyte
 
 var bestScore = 10000;
 var bestPlain = null;
