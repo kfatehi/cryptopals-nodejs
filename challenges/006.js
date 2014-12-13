@@ -7,9 +7,12 @@ var tools = require('../lib/filetools')
 var hammingKeySize = require('../lib/find_best_keysize')
 var fileContent = tools.bufferFromFileBase64(dataFilePath)
 var keySize = hammingKeySize(fileContent)
+var xor = require('../lib/xor')
+
 
 console.log('Got keysize:', keySize);
 assert.equal(keySize, 29)
+
 
 var byteArray = BreakVignere(fileContent, keySize)
 var plain = new Buffer(byteArray).toString()
